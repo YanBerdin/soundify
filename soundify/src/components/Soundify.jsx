@@ -3,6 +3,11 @@ import { useProvider } from "../utils/Provider";
 import styled from "styled-components";
 import { reducerCases } from "../utils/Constants";
 
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import Body from "./Body";
+import Footer from "./Footer";
+
 function Soundify() {
   const [, dispatch] = useProvider();
 
@@ -17,32 +22,56 @@ function Soundify() {
 
   return (
     <Container>
-      <div>
-        <h1>Welcome to Soundify</h1>
-        <p>Enjoy your favorite music!</p>
-        <button onClick={logout}>Logout</button>
+      <div className="spotify__body">
+        <Sidebar />
+        <div className="body">
+          <Navbar />
+          <button onClick={logout}>Logout</button>
+          <div className="body__contents">
+            <Body />
+          </div>
+        </div>
+      </div>
+      <div className="spotify__footer">
+        <Footer />
       </div>
     </Container>
   );
 }
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  /* background-color: #1db954; */
-  gap: 5rem;
-
-  button {
-    padding: 0.5rem 3rem;
-    border-radius: 3rem;
-    background-color: black; 
-    color: #49f585;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 85vh 15vh;
+  .spotify__body {
+    display: grid;
+    grid-template-columns: 15vw 85vw;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color: rgb(32, 87, 100);
+    .body {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: 0.7rem;
+        max-height: 2rem;
+        &-thumb {
+          background-color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+    button {
+      padding: 0.5rem 3rem;
+      border-radius: 3rem;
+      background-color: black;
+      color: #49f585;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
   }
 `;
 
