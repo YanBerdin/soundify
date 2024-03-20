@@ -1,28 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
+const client_id = process.env.REACT_APP_CLIENT_ID;
+const redirect_uri = "http://localhost:3000";
+const api_uri = "https://accounts.spotify.com/authorize";
+const scope = [
+  "user-read-private",
+  "user-read-email",
+  "user-modify-playback-state",
+  "user-read-playback-state",
+  "user-read-currently-playing",
+  "user-read-recently-played",
+  "user-top-read",
+];
+const RESPONSE_TYPE = "token";
 
 export function Login() {
   const handleClick = async () => {
-
-    const client_id = process.env.REACT_APP_CLIENT_ID;
-    console.log(client_id);
-    const redirect_uri = "http://localhost:3000";
-    const api_uri = "https://accounts.spotify.com/authorize";
-    const scope = [
-      "user-read-private",
-      "user-read-email",
-      "user-modify-playback-state",
-      "user-read-playback-state",
-      "user-read-currently-playing",
-      "user-read-recently-played",
-      "user-top-read",
-    ];
     window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
       " "
-    )}&response_type=token&show_dialog=true`;
+    )}&response_type=${RESPONSE_TYPE}&show_dialog=true`;
   };
-  
+
   return (
     <Container>
       <img
@@ -43,7 +42,9 @@ const Container = styled.div`
   width: 100%;
   background-color: #1db954;
   gap: 5rem;
-
+  img {
+    height: 10rem;
+  }
   button {
     padding: 1rem 5rem;
     border-radius: 5rem;

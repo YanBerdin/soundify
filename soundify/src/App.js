@@ -1,28 +1,51 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import Login from "./components/Login";
-import Spotify from "./components/Spotify";
 import { useProvider } from "./utils/Provider";
 import { reducerCases } from "./utils/Constants";
+import Soundify from "./components/Soundify";
+import "./App.css";
 
 function App() {
+  const [{ token }, dispatch] = useProvider();
+  // console.log(token);
 
-    const [{ token }, dispatch] = useProvider();
+  useEffect(() => {
+    // Vérifier si un token est stocké dans localStorage au démarrage de l'application
+    const storedToken = window.localStorage.getItem("token");
 
-    useEffect(() => {
-      const hash = window.location.hash;
-      console.log(hash);
-      if (hash) {
-        const token = hash.substring(1).split("&")[0].split("=")[1];
-        console.log(token);
-        if (token) {
-          dispatch({ type: reducerCases.SET_TOKEN, token });
-        }
+    // Si un token est trouvé et qu'il n'est pas déjà dans le state => MAJ du state
+    if (storedToken && !token) {
+      dispatch({ type: reducerCases.SET_TOKEN, token: storedToken });
+    }
+
+    // Écouter les changements dans l'URL qui peuvent indiquer un nouveau token
+    const hash = window.location.hash;
+    if (hash) {
+      const tokenMatch = hash.match(/access_token=([^&]*)/);
+
+      if (tokenMatch) {
+        const newToken = tokenMatch[1];
+        window.localStorage.setItem("token", newToken);
+
+        // Nettoyer le hash de l'URL
+        window.location.hash = "";
+        dispatch({ type: reducerCases.SET_TOKEN, token: newToken });
+
+        //  console.log(newToken);
+        //  console.log(token);
       }
+    }
 
-    }, [dispatch, token]);
+    //  console.log(token);
+  }, [dispatch, token]);
 
-    return <div>{token ? <Spotify /> : <Login />}</div>
+  return !token ? (
+    <Login />
+  ) : (
+    <div>
+      <Soundify />
+    </div>
+  );
 }
 
 export default App;
