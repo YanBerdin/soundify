@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useProvider } from "../utils/Provider";
 import styled from "styled-components";
 import { reducerCases } from "../utils/Constants";
-
+import axios from "axios";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Body from "./Body";
 import Footer from "./Footer";
 
 function Soundify() {
-  const [, dispatch] = useProvider();
+  const [{ token }, dispatch] = useProvider();
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const { data } = await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+      const userInfo = {
+        userId: data.id,
+        userUrl: data.external_urls.spotify,
+        name: data.display_name,
+      };
+      dispatch({ type: reducerCases.SET_USER, userInfo });
+    };
+    getUserInfo();
+  }, [dispatch, token]);
 
   const logout = () => {
     window.localStorage.removeItem("token");
