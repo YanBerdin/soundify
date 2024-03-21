@@ -64,12 +64,12 @@ const Container = styled.div`
       }
     }
     button {
-      padding: 0.5rem 3rem;
+      padding: 0.5rem 2rem;
       border-radius: 3rem;
       background-color: black;
       color: #49f585;
       border: none;
-      font-size: 1.4rem;
+      font-size: 0.8rem;
       cursor: pointer;
     }
   }
