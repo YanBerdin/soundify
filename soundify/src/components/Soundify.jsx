@@ -73,12 +73,20 @@ const Container = styled.div`
       height: 100%;
       width: 100%;
       overflow: auto;
-      &::-webkit-scrollbar {
+      /* &::-webkit-scrollbar {
+        color: "#b3b3b3";
         width: 0.7rem;
         max-height: 2rem;
         &-thumb {
           background-color: rgba(255, 255, 255, 0.6);
         }
+      } */
+      }
+    }
+    .liHmcj ul::-webkit-scrollbar {
+      width: 0.15rem;
+      &-thumb {
+        background-color: rgb(34, 34, 35);
       }
     }
     button {

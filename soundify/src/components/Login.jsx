@@ -43,7 +43,7 @@ const Container = styled.div`
   background-color: #1db954;
   gap: 5rem;
   img {
-    height: 10rem;
+    object-fit: contain;
   }
   button {
     padding: 1rem 5rem;

@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 
 function Navbar({ navBackground }) {
   const [{ userInfo }] = useProvider();
-  console.log(userInfo);
+  console.log(userInfo); //TODO: Remove this line 
   return (
     <Container navBackground={navBackground}>
       <div className="search__bar">

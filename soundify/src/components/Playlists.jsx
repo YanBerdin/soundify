@@ -29,11 +29,11 @@ function Playlists() {
 
         // Récupérer un tableau d'objets items
         const { items } = response.data;
-        console.log(items); //TODO supprimer console.log
-        // Pour accéder au nom de la première playlist
+        console.log(items); //TODO: Remove this line 
+        //? Pour accéder au nom de la première playlist
         const playlistName = items[0].name;
-        console.log(playlistName); //TODO supprimer console.log
-        console.log(items); //TODO supprimer console.log
+        console.log(playlistName); //TODO: Remove this line 
+        console.log(items); //TODO: Remove this line 
 
         // Création d'un tableau avec les noms et les id des playlists
         const playlistData = items.map(({ name, id }) => {
