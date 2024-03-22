@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg";
 function Navbar({ navBackground }) {
   const [{ userInfo }] = useProvider();
   console.log(userInfo); //TODO: Remove this line 
+  
   return (
     <Container navBackground={navBackground}>
       <div className="search__bar">
@@ -33,7 +34,7 @@ const Container = styled.div`
   top: 0;
   transition: 0.3s ease-in-out;
   background-color: ${({ navBackground }) =>
-    navBackground ? "rgba(0,0,0,0.7)" : "none"};
+    navBackground ? "rgba(0,0,0,0.3)" : "none"};
   .search__bar {
     background-color: white;
     width: 30%;

@@ -7,12 +7,12 @@ import Playlists from "./Playlists";
 function Sidebar() {
   return     <Container>
   <div className="top__links">
-    <div className="logo">
+    {/* <div className="logo">
       <img
         src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
         alt="spotify"
       />
-    </div>
+    </div> */}
     <ul>
       <li>
         <MdHomeFilled />
@@ -42,14 +42,14 @@ const Container = styled.div`
   .top__links {
     display: flex;
     flex-direction: column;
-    .logo {
+    /*.logo {
       text-align: center;
       margin: 1rem 0;
       img {
         max-inline-size: 80%;
         block-size: auto;
       }
-    }
+    }*/
     ul {
       list-style-type: none;
       display: flex;

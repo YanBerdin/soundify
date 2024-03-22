@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useProvider } from "../utils/Provider";
 import styled from "styled-components";
 import { reducerCases } from "../utils/Constants";
@@ -10,7 +10,22 @@ import Footer from "./Footer";
 
 function Soundify() {
   const [{ token }, dispatch] = useProvider();
+  // const [{userInfo}] = useProvider(); //TODO Remove this line
+  // console.log(userInfo); //TODO Remove this line
+  // const [{selectedPlaylist}] = useProvider(); //TODO Remove this line
+  // console.log(selectedPlaylist); //TODO Remove this line
 
+  const [navBackground, setNavBackground] = useState(false);
+  const [headerBackground, setHeaderBackground] = useState(false);
+  const bodyRef = useRef();
+  const bodyScrolled = () => {
+    bodyRef.current.scrollTop >= 30
+      ? setNavBackground(true)
+      : setNavBackground(false);
+    bodyRef.current.scrollTop >= 268
+      ? setHeaderBackground(true)
+      : setHeaderBackground(false);
+  };
   useEffect(() => {
     const getUserInfo = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
@@ -42,11 +57,11 @@ function Soundify() {
     <Container>
       <div className="spotify__body">
         <Sidebar />
-        <div className="body">
-          <Navbar />
+        <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
+          <Navbar navBackground={navBackground} />
           <button onClick={logout}>Logout</button>
           <div className="body__contents">
-            <Body />
+            <Body headerBackground={headerBackground} />
           </div>
         </div>
       </div>
@@ -81,23 +96,22 @@ const Container = styled.div`
           background-color: rgba(255, 255, 255, 0.6);
         }
       } */
-      }
     }
-    .liHmcj ul::-webkit-scrollbar {
-      width: 0.15rem;
-      &-thumb {
-        background-color: rgb(34, 34, 35);
-      }
+  }
+  .liHmcj ul::-webkit-scrollbar {
+    width: 0.3rem;
+    &-thumb {
+      background-color: rgb(68, 68, 69);
     }
-    button {
-      padding: 0.5rem 2rem;
-      border-radius: 3rem;
-      background-color: black;
-      color: #49f585;
-      border: none;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
+  }
+  button {
+    padding: 0.5rem 2rem;
+    border-radius: 3rem;
+    background-color: black;
+    color: #49f585;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
   }
 `;
 
