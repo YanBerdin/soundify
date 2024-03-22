@@ -6,6 +6,7 @@ import { reducerCases } from "../utils/Constants";
 
 function CurrentTrack() {
   const [{ token, currentPlaying }, dispatch] = useProvider();
+  
   useEffect(() => {
     const getCurrentTrack = async () => {
       const response = await axios.get(
@@ -18,8 +19,8 @@ function CurrentTrack() {
         }
       );
 
-console.log(response.data); //TODO Remove this line
-console.log(response.data.item); //TODO Remove this line
+      console.log(response.data); //TODO Remove this line
+      console.log(response.data.item); //TODO Remove this line
 
       if (response.data !== "") {
         const currentPlaying = {
@@ -35,6 +36,7 @@ console.log(response.data.item); //TODO Remove this line
     };
     getCurrentTrack();
   }, [token, dispatch]);
+
   return (
     <Container>
       {currentPlaying && (
@@ -64,7 +66,7 @@ const Container = styled.div`
     &__info {
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;    
+      gap: 0.3rem;
       &__track__name {
         margin-bottom: 0; /* MAJ */
         color: white;
