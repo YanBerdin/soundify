@@ -87,6 +87,9 @@ function Body() {
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     }
   };
+  // console.log(selectedPlaylist); //TODO: Remove this line
+  
+  // Convertir les millisecondes en minutes et secondes
   const msToMinutesAndSeconds = (ms) => {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);

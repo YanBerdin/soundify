@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import CurrentTrack from "./CurrentTrack";
 
 function Footer() {
   return (
     <Container>
-      <div>Footer</div>
+      <CurrentTrack />
     </Container>
   );
 }
