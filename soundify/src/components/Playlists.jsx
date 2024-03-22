@@ -25,7 +25,7 @@ function Playlists() {
           }
         );
 
-        // console.log(response.data.items);
+        // console.log(response.data.items);//TODO Remove this line
 
         // Récupérer un tableau d'objets items
         const { items } = response.data;

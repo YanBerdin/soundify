@@ -45,7 +45,7 @@ function Soundify() {
   }, [dispatch, token]);
 
   const logout = () => {
-    window.localStorage.removeItem("token");
+    window.sessionStorage.removeItem("token");
     dispatch({ type: reducerCases.SET_TOKEN, token: "" });
 
     // Redirect vers login page

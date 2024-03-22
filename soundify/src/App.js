@@ -10,8 +10,8 @@ function App() {
   // console.log(token);
 
   useEffect(() => {
-    // Vérifier si un token est stocké dans localStorage au démarrage de l'application
-    const storedToken = window.localStorage.getItem("token");
+    // Vérifier si un token est stocké dans sessionStorage au démarrage de l'application
+    const storedToken = window.sessionStorage.getItem("token");
 
     // Si un token est trouvé et qu'il n'est pas déjà dans le state => MAJ du state
     if (storedToken && !token) {
@@ -25,7 +25,7 @@ function App() {
 
       if (tokenMatch) {
         const newToken = tokenMatch[1];
-        window.localStorage.setItem("token", newToken);
+        window.sessionStorage.setItem("token", newToken);
 
         // Nettoyer le hash de l'URL
         window.location.hash = "";
