@@ -42,13 +42,13 @@ function Body() {
         })),
       };
       console.log(response.data); //TODO: Remove this line
-
       dispatch({ type: reducerCases.SET_PLAYLIST, selectedPlaylist });
     };
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
 
-  console.log(selectedPlaylistId); //TODO: Remove this line
+ // console.log(selectedPlaylistId); //TODO: Remove this line
+// console.log(selectedPlaylist.name);
 
   const playTrack = async (
     id,
@@ -87,7 +87,7 @@ function Body() {
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     }
   };
-  // console.log(selectedPlaylist); //TODO: Remove this line
+   console.log(selectedPlaylist); //TODO: Remove this line
   
   // Convertir les millisecondes en minutes et secondes
   const msToMinutesAndSeconds = (ms) => {

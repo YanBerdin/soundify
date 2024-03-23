@@ -8,7 +8,6 @@ import Sidebar from "./Sidebar";
 import Body from "./Body";
 import Footer from "./Footer";
 
-
 function Soundify() {
   const [{ token }, dispatch] = useProvider();
   // const [{userInfo}] = useProvider(); //TODO Remove this line
@@ -16,7 +15,7 @@ function Soundify() {
   // const [{selectedPlaylist}] = useProvider(); //TODO Remove this line
   // console.log(selectedPlaylist); //TODO Remove this line
 
-  // 
+  //
   const [navBackground, setNavBackground] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(false);
   const bodyRef = useRef();
@@ -29,7 +28,6 @@ function Soundify() {
       : setHeaderBackground(false);
   };
 
-  
   useEffect(() => {
     const getUserInfo = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
@@ -46,6 +44,22 @@ function Soundify() {
       dispatch({ type: reducerCases.SET_USER, userInfo });
     };
     getUserInfo();
+  }, [dispatch, token]);
+
+  useEffect(() => {
+    const getPlaybackState = async () => {
+      const { data } = await axios.get("https://api.spotify.com/v1/me/player", {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+      dispatch({
+        type: reducerCases.SET_PLAYER_STATE,
+        playerState: data.is_playing,
+      });
+    };
+    getPlaybackState();
   }, [dispatch, token]);
 
   const logout = () => {

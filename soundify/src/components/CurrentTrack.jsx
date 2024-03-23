@@ -6,8 +6,9 @@ import { reducerCases } from "../utils/Constants";
 
 function CurrentTrack() {
   const [{ token, currentPlaying }, dispatch] = useProvider();
-  
+
   useEffect(() => {
+    // https://developer.spotify.com/documentation/web-api/reference/get-the-users-currently-playing-track
     const getCurrentTrack = async () => {
       const response = await axios.get(
         "https://api.spotify.com/v1/me/player/currently-playing",
@@ -19,7 +20,7 @@ function CurrentTrack() {
         }
       );
 
-      console.log(response.data); //TODO Remove this line
+      // console.log(response.data); //TODO Remove this line
       console.log(response.data.item); //TODO Remove this line
 
       if (response.data !== "") {
@@ -29,13 +30,15 @@ function CurrentTrack() {
           artists: response.data.item.artists.map((artist) => artist.name),
           image: response.data.item.album.images[2].url,
         };
-        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
+        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: currentPlaying});
       } else {
         dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
       }
     };
     getCurrentTrack();
   }, [token, dispatch]);
+
+ // console.log(currentPlaying); //TODO Remove this line
 
   return (
     <Container>

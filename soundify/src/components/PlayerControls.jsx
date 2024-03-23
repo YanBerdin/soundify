@@ -56,7 +56,7 @@ function PlayerControls() {
 
   const changeTrack = async (type) => {
     try {
-      const response = await axios.post(
+       await axios.post(
         `https://api.spotify.com/v1/me/player/${type}`,
         {},
         {
@@ -67,9 +67,6 @@ function PlayerControls() {
         }
       );
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
-
-      if (response.status === 204) {
-        dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
 
         const response1 = await axios.get(
           "https://api.spotify.com/v1/me/player/currently-playing",
@@ -82,7 +79,7 @@ function PlayerControls() {
         );
         console.log(response1.data); //TODO Remove this line
 
-        if (response1.data && response1.data.item) {
+        if (response1.data !== "") {
           //response1.data !== ""
           const currentPlaying = {
             id: response1.data.item.id,
@@ -94,7 +91,7 @@ function PlayerControls() {
         } else {
           dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
         }
-      }
+      
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Gérer l'erreur 403 ici
