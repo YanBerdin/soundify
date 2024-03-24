@@ -45,7 +45,7 @@ function PlayerControls() {
       } else {
         // Gérer d'autres types d'erreurs ici
         console.error(
-          "Une erreur s'est produite lors de la modification de l'état du lecteur."
+          "Une erreur s'est produite lors de la modification Play/Pause de l'état du lecteur."
         );
         console.log(
           "Une erreur s'est produite lors de la modification de l'état du lecteur."

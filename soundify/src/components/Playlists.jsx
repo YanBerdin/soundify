@@ -29,23 +29,29 @@ function Playlists() {
 
         // Récupérer un tableau d'objets items
         const { items } = response.data;
-        console.log(items); //TODO: Remove this line
+        console.log(items); //TODO Remove this line
         //? Pour accéder au nom de la première playlist
         // const playlistName = items[0].name;
-        // console.log(playlistName); //TODO: Remove this line
+        // console.log(playlistName); //TODO Remove this line
 
         // Création d'un tableau avec les noms et les id des playlists
         const playlistData = items.map(({ name, id }) => {
           return { name, id };
         });
-        console.log(playlistData); //TODO: Remove this line
+        console.log(playlistData); //TODO Remove this line
         // Mise à jour de l'état des playlists
         dispatch({ type: reducerCases.SET_PLAYLISTS, playlists: playlistData });
-        console.log(playlistData); //TODO: Remove this line
+        console.log(playlistData); //TODO Remove this line
         // setPlaylists(playlistData); // Mise à jour de l'état des playlists
         setLoading(false); // Mise à jour de l'état de chargement
       } catch (error) {
-        console.error(error);
+        if (error.response && error.response.status === 401) {
+          console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.");
+          window.location.href = "http://localhost:3000";
+        } else {
+          console.error(error);
+          console.log("Token expiré. Cliquer sur Logout ou fermer l'onglet."); //TODO Remove this line
+        }
         // Mise à jour de l'état de chargement même en cas d'erreur
         setLoading(false);
       }

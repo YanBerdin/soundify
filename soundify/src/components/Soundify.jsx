@@ -30,34 +30,61 @@ function Soundify() {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const { data } = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      });
-      const userInfo = {
-        userId: data.id,
-        userUrl: data.external_urls.spotify,
-        name: data.display_name,
-      };
-      dispatch({ type: reducerCases.SET_USER, userInfo });
+      try {
+        const { data } = await axios.get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        });
+        const userInfo = {
+          userId: data.id,
+          userUrl: data.external_urls.spotify,
+          name: data.display_name,
+        };
+        dispatch({ type: reducerCases.SET_USER, userInfo });
+      } catch (error) {
+        // Handle error here
+        if (error.response && error.response.status === 401) {
+          console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.");
+          // Rediriger vers la page de connexion
+          window.location.href = "http://localhost:3000";
+        } else {
+          console.error("Error fetching user info:", error);
+          // Perform actions for other errors
+          // For example, show error message
+        }
+      }
     };
     getUserInfo();
   }, [dispatch, token]);
 
   useEffect(() => {
     const getPlaybackState = async () => {
-      const { data } = await axios.get("https://api.spotify.com/v1/me/player", {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      });
-      dispatch({
-        type: reducerCases.SET_PLAYER_STATE,
-        playerState: data.is_playing,
-      });
+      try {
+        const { data } = await axios.get(
+          "https://api.spotify.com/v1/me/player",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        dispatch({
+          type: reducerCases.SET_PLAYER_STATE,
+          playerState: data.is_playing,
+        });
+      } catch (error) {
+        // Handle error here
+        if (error.response && error.response.status === 401) {
+          console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.", error);
+          window.location.href = "http://localhost:3000";
+        } else {
+          console.error("Error fetching playback state:", error);
+          window.location.href = "http://localhost:3000";
+        }
+      }
     };
     getPlaybackState();
   }, [dispatch, token]);
