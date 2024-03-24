@@ -16,7 +16,7 @@ function Soundify() {
   // console.log(selectedPlaylist); //TODO Remove this line
 
   //
-  const [navBackground, setNavBackground] = useState(false);
+  const [$navBackground, setNavBackground] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(false);
   const bodyRef = useRef();
   const bodyScrolled = () => {
@@ -51,8 +51,6 @@ function Soundify() {
           window.location.href = "http://localhost:3000";
         } else {
           console.error("Error fetching user info:", error);
-          // Perform actions for other errors
-          // For example, show error message
         }
       }
     };
@@ -79,10 +77,10 @@ function Soundify() {
         // Handle error here
         if (error.response && error.response.status === 401) {
           console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.", error);
-          window.location.href = "http://localhost:3000";
+          // window.location.href = "http://localhost:3000"; //? Boucle infinie
         } else {
           console.error("Error fetching playback state:", error);
-          window.location.href = "http://localhost:3000";
+          // window.location.href = "http://localhost:3000"; //? Boucle infinie
         }
       }
     };
@@ -103,7 +101,7 @@ function Soundify() {
       <div className="spotify__body">
         <Sidebar />
         <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
-          <Navbar navBackground={navBackground} />
+          <Navbar $navBackground={$navBackground} />
           <button onClick={logout}>Logout</button>
           <div className="body__contents">
             <Body headerBackground={headerBackground} />

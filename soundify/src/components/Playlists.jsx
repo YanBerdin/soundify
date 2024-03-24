@@ -47,7 +47,7 @@ function Playlists() {
       } catch (error) {
         if (error.response && error.response.status === 401) {
           console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.");
-          window.location.href = "http://localhost:3000";
+          // window.location.href = "http://localhost:3000";
         } else {
           console.error(error);
           console.log("Token expiré. Cliquer sur Logout ou fermer l'onglet."); //TODO Remove this line

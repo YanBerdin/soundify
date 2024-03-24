@@ -50,7 +50,7 @@ function Body() {
             "Token expiré. Cliquer sur Logout ou fermer l'onglet.",
             error
           );
-          window.location.href = "http://localhost:3000";
+          // window.location.href = "http://localhost:3000";
         } else {
           console.error("Erreur de récupération des playlists", error);
         }

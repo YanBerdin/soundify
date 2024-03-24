@@ -44,7 +44,7 @@ function CurrentTrack() {
         if (error.response.status === 401) {
           // console.log("Token expiré. Cliquer sur Logout ou fermer l'onglet."); //TODO Remove this line
           console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.", error);
-          window.location.href = "http://localhost:3000";
+          // window.location.href = "http://localhost:3000";
         } else {
           console.error("Une erreur est survenue, Cliquer sur Logout ou fermer l'onglet.", error);
           // Handle other errors here
