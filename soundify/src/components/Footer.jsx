@@ -5,6 +5,7 @@ import PlayerControls from "./PlayerControls";
 
 
 function Footer() {
+  console.log("Rendering => Footer"); //TODO Remove this line
   return (
     <Container>
       <CurrentTrack />

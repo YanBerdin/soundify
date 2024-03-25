@@ -5,6 +5,7 @@ import { IoLibrary } from "react-icons/io5";
 import Playlists from "./Playlists";
 
 function Sidebar() {
+  console.log("Rendering => Sidebar"); //TODO Remove this line
   return (
     <Container>
       <div className="top__links">

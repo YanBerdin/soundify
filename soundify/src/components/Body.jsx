@@ -10,6 +10,8 @@ function Body() {
   const [{ token, selectedPlaylistId, selectedPlaylist }, dispatch] =
     useProvider();
 
+  console.log("Rendering => Body"); //TODO Remove this line
+
   useEffect(() => {
     const getInitialPlaylist = async () => {
       try {
@@ -23,7 +25,7 @@ function Body() {
           }
         );
         console.log(response.data); //TODO Remove this line
-
+        console.log("getInitialPlaylist (Body.jsx)"); //TODO Remove this line
         const selectedPlaylist = {
           id: response.data.id,
           name: response.data.name,
@@ -44,6 +46,7 @@ function Body() {
         };
         // console.log(response.data); //TODO Remove this line
         dispatch({ type: reducerCases.SET_PLAYLIST, selectedPlaylist });
+        console.log("dispatch SET_PLAYLIST selectedPlaylist"); //TODO Remove this line
       } catch (error) {
         if (error.response && error.response.status === 401) {
           console.error(
@@ -57,6 +60,7 @@ function Body() {
       }
     };
     getInitialPlaylist();
+    console.log("getInitialPlaylist (Body.jsx)"); //TODO Remove this line
   }, [token, dispatch, selectedPlaylistId]);
 
   // console.log(selectedPlaylistId); //TODO Remove this line
@@ -96,6 +100,8 @@ function Body() {
         };
         dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
         dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
+        console.log("dispatch SET_PLAYING currentPlaying"); //TODO Remove this line
+        console.log("dispatch SET_PLAYER_STATE playerState: true"); //TODO Remove this line
       } else {
         dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
       }
@@ -112,7 +118,7 @@ function Body() {
           error
         );
       }
-      console.log(selectedPlaylist); //TODO: Remove this line
+     // console.log(selectedPlaylist); //TODO: Remove this line
     }
   };
 

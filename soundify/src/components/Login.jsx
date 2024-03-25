@@ -15,7 +15,8 @@ const scope = [
 ];
 const RESPONSE_TYPE = "token";
 
-export function Login() {
+function Login() {
+   console.log("Rendering => Login"); //TODO Remove this line
   const handleClick = async () => {
     window.location.href = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
       " "

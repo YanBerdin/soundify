@@ -13,6 +13,7 @@ import { reducerCases } from "../utils/Constants";
 
 function PlayerControls() {
   const [{ token, playerState }, dispatch] = useProvider();
+  console.log("Rendering => PlayerControls"); //TODO Remove this line
 
   const changeState = async () => {
     try {
@@ -32,24 +33,29 @@ function PlayerControls() {
           type: reducerCases.SET_PLAYER_STATE,
           playerState: !playerState,
         });
+        console.log("dispatch SET_PLAYER_STATE, playerState: !playerState"); //TODO Remove this line
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Gérer l'erreur 403 ici
         console.error(
-          "Cette fonctionnalité nécessite un compte Spotify Premium."
+          "Cette fonctionnalité nécessite un compte Spotify Premium.",
+          error
         );
-        console.log(
-          "Cette fonctionnalité nécessite un compte Spotify Premium."
-        ); //TODO Remove this line
+        console.error(
+          "Cette fonctionnalité nécessite un compte Spotify Premium.",
+          error
+        );
       } else {
         // Gérer d'autres types d'erreurs ici
         console.error(
-          "Une erreur s'est produite lors de la modification Play/Pause de l'état du lecteur."
+          "Une erreur s'est produite lors de la modification Play/Pause de l'état du lecteur.",
+          error
         );
-        console.log(
-          "Une erreur s'est produite lors de la modification de l'état du lecteur."
-        ); //TODO Remove this line
+        console.error(
+          "Une erreur s'est produite lors de la modification de l'état du lecteur.",
+          error
+        );
       }
     }
   };
@@ -67,6 +73,8 @@ function PlayerControls() {
         }
       );
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
+      console.log("Appel => ChangeTrack"); //TODO Remove this line
+      console.log("dispatch reducerCases.SET_PLAYER_STATE, playerState: true"); //TODO Remove this line
 
       const response1 = await axios.get(
         "https://api.spotify.com/v1/me/player/currently-playing",
@@ -88,22 +96,32 @@ function PlayerControls() {
           image: response1.data.item.album.images[2].url,
         };
         dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
+        console.log("dispatch reducerCases.SET_PLAYING, currentPlaying"); //TODO Remove this line
       } else {
         dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
+        console.log("dispatch reducerCases.SET_PLAYING, currentPlaying: null"); //TODO Remove this line
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Gérer l'erreur 403 ici
         console.error(
-          "Cette fonctionnalité nécessite un compte Spotify Premium."
+          "Cette fonctionnalité nécessite un compte Spotify Premium.",
+          error
         );
-        console.log(
-          "Cette fonctionnalité nécessite un compte Spotify Premium."
+        console.error(
+          "Cette fonctionnalité nécessite un compte Spotify Premium.",
+          error
         );
       } else {
         // Gérer d'autres types d'erreurs ici
-        console.error("Une erreur s'est produite lors du changement de piste."); //TODO Remove this line
-        console.log("Une erreur s'est produite lors du changement de piste."); //TODO Remove this line
+        console.error(
+          "Une erreur s'est produite lors du changement de piste.",
+          error
+        ); //TODO Remove this line
+        console.error(
+          "Une erreur s'est produite lors du changement de piste.",
+          error
+        ); //TODO Remove this line
       }
     }
   };

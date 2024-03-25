@@ -6,7 +6,7 @@ import { reducerCases } from "../utils/Constants";
 
 function CurrentTrack() {
   const [{ token, currentPlaying }, dispatch] = useProvider();
-
+  console.log("Rendering => CurrentTrack"); //TODO Remove this line
   useEffect(() => {
     // https://developer.spotify.com/documentation/web-api/reference/get-the-users-currently-playing-track
     const getCurrentTrack = async () => {
@@ -35,10 +35,10 @@ function CurrentTrack() {
             type: reducerCases.SET_PLAYING,
             currentPlaying: currentPlaying,
           });
-          console.log("Appel set currentPlaying"); //TODO Remove this line
+          console.log("dispatch SET_PLAYING currentPlaying: currentPlaying"); //TODO Remove this line
         } else {
           dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
-          console.log("set currentPlaying => Null"); //TODO Remove this line
+          console.log("dispatch SET_PLAYING, currentPlaying: null"); //TODO Remove this line
         }
       } catch (error) {
         if (error.response.status === 401) {
@@ -53,8 +53,8 @@ function CurrentTrack() {
     };
     getCurrentTrack();
   }, [token, dispatch]);
-
-  console.log(currentPlaying); //TODO Remove this line
+  console.log("Appel => getCurrentTrack()"); //TODO Remove this line
+  // console.log(currentPlaying); //TODO Remove this line
   // console.log(currentPlaying?.name); //TODO Remove this line
   return (
     <Container>

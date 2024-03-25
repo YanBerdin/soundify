@@ -14,8 +14,8 @@ function Soundify() {
   // console.log(userInfo); //TODO Remove this line
   // const [{selectedPlaylist}] = useProvider(); //TODO Remove this line
   // console.log(selectedPlaylist); //TODO Remove this line
+  console.log("Rendering => Soundify"); //TODO Remove this line
 
-  //
   const [$navBackground, setNavBackground] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(false);
   const bodyRef = useRef();
@@ -73,10 +73,14 @@ function Soundify() {
           type: reducerCases.SET_PLAYER_STATE,
           playerState: data.is_playing,
         });
+        console.log("dispatch SET_PLAYER_STATE, playerState: data.is_playing"); //TODO Remove this line
       } catch (error) {
         // Handle error here
         if (error.response && error.response.status === 401) {
-          console.error("Token expiré. Cliquer sur Logout ou fermer l'onglet.", error);
+          console.error(
+            "Token expiré. Cliquer sur Logout ou fermer l'onglet.",
+            error
+          );
           // window.location.href = "http://localhost:3000"; //? Boucle infinie
         } else {
           console.error("Error fetching playback state:", error);
@@ -85,6 +89,7 @@ function Soundify() {
       }
     };
     getPlaybackState();
+    console.log("Appel => getPlaybackState()"); //TODO Remove this line
   }, [dispatch, token]);
 
   const logout = () => {
