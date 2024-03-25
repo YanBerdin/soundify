@@ -98,7 +98,7 @@ const Container = styled.div`
     max-height: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
-      width: 0.7rem;
+      width: 0.2rem;
       &-thumb {
         background-color: rgba(255, 255, 255, 0.6);
       }

@@ -115,43 +115,43 @@ function Soundify() {
   );
 }
 const Container = styled.div`
+  --color-background: rgb(32, 87, 100);
+  --color-scrollbar-thumb: rgb(255, 255, 255, 0.6);
+  --color-button-bg: black;
+  --color-button-text: #49f585;
+
   max-width: 100vw;
   max-height: 100vh;
   overflow: hidden;
   display: grid;
   grid-template-rows: 85vh 15vh;
+
   .spotify__body {
     display: grid;
     grid-template-columns: 15vw 85vw;
     height: 100%;
     width: 100%;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-    background-color: rgb(32, 87, 100);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1)), var(--color-background);
+
     .body {
       height: 100%;
       width: 100%;
       overflow: auto;
-      /* &::-webkit-scrollbar {
+    
+    &::-webkit-scrollbar {
         color: "#b3b3b3";
-        width: 0.7rem;
+        width: 0.3rem;
         max-height: 2rem;
         &-thumb {
-          background-color: rgba(255, 255, 255, 0.6);
+          background-color: var(--color-scrollbar-thumb);
         }
-      } */
-    }
   }
-  .liHmcj ul::-webkit-scrollbar {
-    width: 0.3rem;
-    &-thumb {
-      background-color: rgb(68, 68, 69);
-    }
-  }
+
   button {
     padding: 0.5rem 2rem;
     border-radius: 3rem;
-    background-color: black;
-    color: #49f585;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
     border: none;
     font-size: 0.8rem;
     cursor: pointer;
