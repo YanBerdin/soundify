@@ -5,31 +5,27 @@ import { IoLibrary } from "react-icons/io5";
 import Playlists from "./Playlists";
 
 function Sidebar() {
-  return     <Container>
-  <div className="top__links">
-    {/* <div className="logo">
-      <img
-        src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
-        alt="spotify"
-      />
-    </div> */}
-    <ul>
-      <li>
-        <MdHomeFilled />
-        <span>Home</span>
-      </li>
-      <li>
-        <MdSearch />
-        <span>Search</span>
-      </li>
-      <li>
-        <IoLibrary />
-        <span>Your Library</span>
-      </li>
-    </ul>
-  </div>
-  <Playlists />
-</Container>
+  return (
+    <Container>
+      <div className="top__links">
+        <ul>
+          <li>
+            <MdHomeFilled />
+            <span>Home</span>
+          </li>
+          <li>
+            <MdSearch />
+            <span>Search</span>
+          </li>
+          <li>
+            <IoLibrary />
+            <span>Your Library</span>
+          </li>
+        </ul>
+      </div>
+      <Playlists />
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -42,14 +38,6 @@ const Container = styled.div`
   .top__links {
     display: flex;
     flex-direction: column;
-    /*.logo {
-      text-align: center;
-      margin: 1rem 0;
-      img {
-        max-inline-size: 80%;
-        block-size: auto;
-      }
-    }*/
     ul {
       list-style-type: none;
       display: flex;

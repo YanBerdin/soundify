@@ -56,7 +56,7 @@ function PlayerControls() {
 
   const changeTrack = async (type) => {
     try {
-       await axios.post(
+      await axios.post(
         `https://api.spotify.com/v1/me/player/${type}`,
         {},
         {
@@ -68,30 +68,29 @@ function PlayerControls() {
       );
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
 
-        const response1 = await axios.get(
-          "https://api.spotify.com/v1/me/player/currently-playing",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        console.log(response1.data); //TODO Remove this line
-
-        if (response1.data !== "") {
-          //response1.data !== ""
-          const currentPlaying = {
-            id: response1.data.item.id,
-            name: response1.data.item.name,
-            artists: response1.data.item.artists.map((artist) => artist.name),
-            image: response1.data.item.album.images[2].url,
-          };
-          dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
-        } else {
-          dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
+      const response1 = await axios.get(
+        "https://api.spotify.com/v1/me/player/currently-playing",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
         }
-      
+      );
+      console.log(response1.data); //TODO Remove this line
+
+      if (response1.data !== "") {
+        //response1.data !== ""
+        const currentPlaying = {
+          id: response1.data.item.id,
+          name: response1.data.item.name,
+          artists: response1.data.item.artists.map((artist) => artist.name),
+          image: response1.data.item.album.images[2].url,
+        };
+        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
+      } else {
+        dispatch({ type: reducerCases.SET_PLAYING, currentPlaying: null });
+      }
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Gérer l'erreur 403 ici

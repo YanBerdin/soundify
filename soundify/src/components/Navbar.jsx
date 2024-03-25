@@ -6,8 +6,8 @@ import { CgProfile } from "react-icons/cg";
 
 function Navbar({ $navBackground }) {
   const [{ userInfo }] = useProvider();
-  console.log(userInfo); //TODO Remove this line 
-  
+  console.log(userInfo); //TODO Remove this line
+
   return (
     <Container $navBackground={$navBackground}>
       <div className="search__bar">
@@ -25,6 +25,11 @@ function Navbar({ $navBackground }) {
 }
 
 const Container = styled.div`
+  --background-default: none;
+  --background-active: rgba(0, 0, 0, 0.7);
+  --color-icon-default: #c7c5c5;
+  --color-icon-hover: white;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,7 +38,9 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   transition: 0.3s ease-in-out;
-  background-color: ${({ $navBackground }) => $navBackground ? "rgba(0,0,0,0.7)" : "none"};
+  background-color: ${({ $navBackground }) =>
+    $navBackground ? "var(--background-active)" : "var(--background-default)"};
+
   .search__bar {
     background-color: white;
     width: 30%;
@@ -65,15 +72,22 @@ const Container = styled.div`
       align-items: center;
       gap: 0.5rem;
       text-decoration: none;
-      color: white;
+      color: var(--color-icon-default);
       font-weight: bold;
-      svg {
-        font-size: 1.3rem;
-        background-color: #282828;
-        padding: 0.2rem;
-        border-radius: 1rem;
-        color: #c7c5c5;
-      }
+      transition: color 0.3s ease-in-out;
+        svg {
+          font-size: 1.3rem;
+          background-color: #282828;
+          padding: 0.2rem;
+          border-radius: 1rem;
+          color: var(--color-icon-default);
+          transition: color 0.3s ease-in-out;
+        }
+        &:hover {
+        color: var(--color-icon-hover);
+        svg {
+          color: var(--color-icon-hover); /* Changez la couleur ici */
+        }
     }
   }
 `;

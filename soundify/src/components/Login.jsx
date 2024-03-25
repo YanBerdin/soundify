@@ -53,6 +53,10 @@ const Container = styled.div`
     border: none;
     font-size: 1.4rem;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 export default Login;

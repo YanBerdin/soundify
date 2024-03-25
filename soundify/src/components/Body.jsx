@@ -220,64 +220,71 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 2rem;
-    .image {
-      img {
-        height: 15rem;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-      }
+
+    .image img {
+      height: 15rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
+
     .details {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       color: #e0dede;
+
       .title {
         color: white;
         font-size: 4rem;
       }
     }
   }
+
   .list {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+
     .header-row {
       display: grid;
       grid-template-columns: 0.3fr 3fr 2fr 0.1fr;
-      margin: 1rem 0 0 0;
+      margin-top: 1rem;
       color: #dddcdc;
       position: sticky;
       top: 15vh;
       padding: 1rem 3rem;
-      transition: 0.3s ease-in-out;
-      background-color: ${({ headerBackground }) =>
-        headerBackground ? "#000000dc" : "none"};
+      transition: background-color 0.3s ease-in-out;
+      background-color: ${({ headerBackground }) => headerBackground ? '#000000dc' : 'none'};
     }
-    .tracks {
-      margin: 0 2rem;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 5rem;
-      .row {
-        padding: 0.5rem 1rem;
-        display: grid;
-        grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.7);
+
+    .tracks .row {
+      padding: 0.5rem 1rem;
+      display: grid;
+      grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .col {
+        display: flex;
+        align-items: center;
+        color: #dddcdc;
+
+        img {
+          height: 40px;
+          width: 40px;
         }
-        .col {
+      }
+
+      .detail {
+        display: flex;
+        gap: 1rem;
+
+        .info {
           display: flex;
-          align-items: center;
-          color: #dddcdc;
-          img {
-            height: 40px;
-            width: 40px;
-          }
-        }
-        .detail {
-          display: flex;
-          gap: 1rem;
-          .info {
-            display: flex;
-            flex-direction: column;
-          }
+          flex-direction: column;
         }
       }
     }
