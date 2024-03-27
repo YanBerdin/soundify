@@ -21,9 +21,9 @@ function CurrentTrack() {
           }
         );
 
-        console.log(response.data); //TODO Remove this line
+        console.log("response.data", response.data); //TODO Remove this line
         // console.log(response.data.item.name); //TODO Remove this line
-
+        console.log("Appel => getCurrentTrack()"); //TODO Remove this line
         if (response.data !== "") {
           const currentPlaying = {
             id: response.data.item.id,
@@ -52,10 +52,13 @@ function CurrentTrack() {
       }
     };
     getCurrentTrack();
+    console.log("Appel => getCurrentTrack()"); //TODO Remove this line
   }, [token, dispatch]);
-  console.log("Appel => getCurrentTrack()"); //TODO Remove this line
+
+  
   // console.log(currentPlaying); //TODO Remove this line
   // console.log(currentPlaying?.name); //TODO Remove this line
+
   return (
     <Container>
       {currentPlaying && (

@@ -19,8 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint:css": "stylelint '**/*.css'"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +40,6 @@
     ]
   },
   "devDependencies": {
-    "stylelint": "^16.3.0",
     "stylelint-config-standard": "^36.0.0"
   }
 }

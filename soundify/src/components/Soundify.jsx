@@ -74,6 +74,7 @@ function Soundify() {
           playerState: data.is_playing,
         });
         console.log("dispatch SET_PLAYER_STATE, playerState: data.is_playing"); //TODO Remove this line
+        console.log("is_playing", data.is_playing); //TODO Remove this line
       } catch (error) {
         // Handle error here
         if (error.response && error.response.status === 401) {
